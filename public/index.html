@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Votación</title>
+</head>
+<body>
+    <header>
+        <h1>FORMULARIO DE VOTACIÓN</h1>
+
+        <form id="votacionForm" action="sistema_votacion.php">
+            <label for="name">Nombre y apellido:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="alias">Alias:</label>
+            <input type="text" id="alias" name="alias"><br><br>
+
+            <label for="rut">Rut:</label>
+            <input type="text" id="rut" name="rut"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="region">Región:</label>
+            <select id="region" name="region">
+                <option>Selecciona una Región</option>
+                <option value="one">Arica y Parinacota</option>
+                <option value="two">Tarapacá</option>
+                <option value="three">Antofagasta</option>
+                <option value="four">Atacama</option>           
+                <option value="five">Coquimbo</option>
+                <option value="six">Valparaiso</option>
+                <option value="seven">Region Metropolitana</option>
+                <option value="eight">O'Higgins</option>
+                <option value="nine">Maule</option>
+                <option value="ten">Ñuble</option>
+                <option value="eleven">Biobío</option>
+                <option value="twelve">Araucania</option>           
+                <option value="thirteen">Los Ríos</option>
+                <option value="fourteen">Los Lagos</option>
+                <option value="fifteen">Aysén</option>
+                <option value="sixteen">Magallanes</option>
+            </select><br><br>
+
+            <label for="comuna">Comuna:</label>
+            <select id="comuna" name="comuna">
+                <option>Selecciona una comuna</option>
+                <option value="comuna A">comuna A</option>
+                <option value="comuna B">comuna B</option>
+                <option value="comuna C">comuna C</option>
+                <option value="comuna D">comuna D</option>
+            </select><br><br>
+
+            <label for="candidate">Candidato:</label>
+            <select id="candidate" name="candidate">
+                <option value="candidate">Selecciona un candidato</option>
+                <option value="candidato 1">candidato 1</option>
+                <option value="candidato 2">candidato 2</option>
+                <option value="candidato 3">candidato 3</option>
+                <option value="candidato 4">candidato 4</option>
+            </select><br><br>
+
+            
+            <input type="radio" id="informationWeb" value="one_checkbox" name="checkboxGroup"/> 
+            <label for="informationWeb">Web</label>            
+
+            <input type="radio" id="informationTv" value="two_checkbox" name="checkboxGroup"/>
+            <label for="informationTv">TV</label>
+
+            <input type="radio" id="informationSocial" value="three_checkbox" name="checkboxGroup" /> 
+            <label for="informationSocial">Redes Sociales</label>
+
+            <input type="radio" id="informationFriend" value="four_checkbox" name="checkboxGroup"/> 
+            <label for="informationFriend">Amigo</label> <br/>
+
+            
+
+            <input type="submit" value="Votar">
+        </form>
+    </header>
+
+    
+
+    <script src="form.js"></script>
+</body>
+</html>
