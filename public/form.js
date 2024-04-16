@@ -1,14 +1,15 @@
 
+
 const form = document.getElementById("votacionForm");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log("me diste un click");
+  
 
   async function postJSON(data) {
     try {
       const response = await fetch(
-        "http://localhost:5500/public/sistema_votacion.php",
+        "http://localhost:8000/sistema_votacion.php",
         {
           method: "POST", // or 'PUT'
           headers: {
@@ -17,31 +18,32 @@ form.addEventListener("submit", function (e) {
           body: JSON.stringify(data),
         }
       );
-
+      console.log("aqui response", response);
       const result = await response.json();
+
       console.log("Success:", result);
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-    const name = document.getElementById("name").value;
-    const alias = document.getElementById("alias").value;
-    const rut = document.getElementById("rut").value;
-    const email = document.getElementById("email").value;
-    const region = document.getElementById("region").value;
-    const comuna = document.getElementById("comuna").value;
-    const candidate= document.getElementById("candidate").value;
+  const name = document.getElementById("name").value;
+  const alias = document.getElementById("alias").value;
+  const rut = document.getElementById("rut").value;
+  const email = document.getElementById("email").value;
+  const region = document.getElementById("region").value;
+  const comuna = document.getElementById("comuna").value;
+  const candidate = document.getElementById("candidate").value;
 
-    // Obtener el valor del radio button seleccionado
-   const radios = document.querySelectorAll('input[name="checkboxGroup"]');
-   let selectedInformation = null;
+  // valor del radio button seleccionado
+  const radios = document.querySelectorAll('input[name="checkboxGroup"]');
+  let selectedInformation = null;
 
-   radios.forEach((radio) => {
-   if (radio.checked) {
-   selectedInformation = radio.value;
-  }
-});
+  radios.forEach((radio) => {
+    if (radio.checked) {
+      selectedInformation = radio.value;
+    }
+  });
 
   const data = {
     name: name,
@@ -51,10 +53,8 @@ form.addEventListener("submit", function (e) {
     region: region,
     comuna: comuna,
     candidate: candidate,
-    information:selectedInformation,
+    information: selectedInformation,
   };
   postJSON(data);
-  console.log("aqui la data", data)
-
+  console.log("aqui la data", data);
 });
-

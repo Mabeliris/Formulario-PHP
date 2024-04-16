@@ -1,32 +1,72 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Respondemos a la solicitud OPTIONS con los encabezados CORS permitidos
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Max-Age: 86400'); // Cache preflight request for 1 day
+    header("HTTP/1.1 200 OK");
+    exit();
+}
 
-// Incluir archivo de conexión
-include "conexion.php";
+// El resto de tu código para manejar las solicitudes POST
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["name"])) {
-        // Obtener datos del formulario
-        $name = $_POST["name"];
-        $alias = $_POST["alias"];
-        $rut = $_POST["rut"];
-        $email = $_POST["email"];
-        $region = $_POST["region"];
-        $comuna = $_POST["comuna"];
-        $candidate = $_POST["candidate"];
-        $checkboxGroup = $_POST["checkboxGroup"];
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == "POST") {
+    // Incluir archivo de conexión
+    include("conexion.php");
+    $ClassConexion = conection();
+
+    // Obtener datos del formulario y sanitizarlos
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    $name = pg_escape_string($ClassConexion, $data["name"]);
+    $alias = pg_escape_string($ClassConexion, $data["alias"]);
+    $rut = pg_escape_string($ClassConexion, $data["rut"]);
+    $email = pg_escape_string($ClassConexion, $data["email"]);
+    $region = pg_escape_string($ClassConexion, $data["region"]);
+    $comuna = pg_escape_string($ClassConexion, $data["comuna"]);
+    $candidate = pg_escape_string($ClassConexion, $data["candidate"]);
+    $checkboxGroup = pg_escape_string($ClassConexion, $data["information"]);
+
+    // Verificar los valores de las variables
+    echo "Nombre: " . $name . "<br>";
+    echo "Alias: " . $alias . "<br>";
+    echo "RUT: " . $rut . "<br>";
+    echo "Email: " . $email . "<br>";
+    echo "Region: " . $region . "<br>";
+    echo "Comuna: " . $comuna . "<br>";
+    echo "Candidato: " . $candidate . "<br>";
+    echo "Información: " . $checkboxGroup . "<br>";
+
+    // Crear la consulta SQL con datos sanitizados
+    $query = "INSERT INTO votaciones (nombre_apellido, alias, rut, email, region, comuna, candidato, informacion) 
+              VALUES ('$name', '$alias', '$rut', '$email', '$region', '$comuna', '$candidate', '$checkboxGroup')";
+
+    // Ejecutar la consulta y verificar el resultado
+    $result = pg_query($ClassConexion, $query);
+    $response = array(); // array para la respuesta
+
+    if ($result) {
+        $response['success'] = true;
+        $response['message'] = "Tu voto fue enviado correctamente.";
     } else {
-        echo "Error: El campo no se ha enviado";
+        $response['success'] = false;
+        $response['message'] = "Error al enviar el voto. Por favor, inténtalo de nuevo más tarde.";
     }
+
+    // Cerrar la conexión
+    pg_close($ClassConexion);
+
+    // Devolver la respuesta como JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
 } else {
-    echo "Error: Esta página solo acepta solicitudes POST.";
+    // Método no permitido
+    header("HTTP/1.1 405 Method Not Allowed");
+    echo json_encode(array("error" => "Método no permitido"));
 }
-
-
-if ($rut === "" || $email === "") {
-    echo json_encode("Llena los campos");
-} else {
-    echo json_encode("Correcto: <br>Rut:" . $rut . "<br>Email:" . $email);
-}
-
 ?>
+
+
 
