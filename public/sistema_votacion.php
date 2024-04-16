@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $candidate = $_POST["candidate"];
         $checkboxGroup = $_POST["checkboxGroup"];
     } else {
-        echo "Error: El campo 'name' no se ha enviado";
+        echo "Error: El campo no se ha enviado";
     }
 } else {
     echo "Error: Esta página solo acepta solicitudes POST.";

@@ -1,18 +1,20 @@
 <?php
+function conection(){
+    // Parámetros de conexión
+    $host = "localhost";
+    $port = "5432";
+    $dbname = "formulario_votacion";
+    $user = "root";
+    $password = "root";
+    $bdconection= pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+    return $bdconection;
 
-// Parámetros de conexión
-$host = "localhost";
-$port = "5432";
-$dbname = "formulario_votacion";
-$user = "root";
-$password = "root";
+}
 
+function closeConection($bdconection){
+    $close= pg_close($bdconection);
+    return $close;
 
-$bdconection= pg_connect("host=localhost port=5432 dbname=formulario_votacion");
-
-if(!$bdconection){
-    die("Error al conectar a la base de datos");
-};
-
+}
 
 ?>
