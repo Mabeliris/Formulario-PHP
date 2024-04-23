@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// El resto de tu código para manejar las solicitudes POST
+//Código para manejar las solicitudes POST
 
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "POST") {

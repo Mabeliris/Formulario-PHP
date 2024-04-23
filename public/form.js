@@ -1,8 +1,24 @@
+async function postJSON(data) {
+  try {
+    const response = await fetch("http://localhost:8000/sistema_votacion.php", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log("aqui response", response);
+    const result = await response.json();
 
+    console.log("Success:", result);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 const form = document.getElementById("votacionForm");
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
   
 
@@ -20,6 +36,7 @@ form.addEventListener("submit", function (e) {
       );
       console.log("aqui response", response);
       const result = await response.json();
+      alert("Su respuesta ha sido envíada con exito");
 
       console.log("Success:", result);
     } catch (error) {
@@ -27,6 +44,7 @@ form.addEventListener("submit", function (e) {
     }
   }
 
+  //validar email y rut
   const name = document.getElementById("name").value;
   const alias = document.getElementById("alias").value;
   const rut = document.getElementById("rut").value;
@@ -57,4 +75,7 @@ form.addEventListener("submit", function (e) {
   };
   postJSON(data);
   console.log("aqui la data", data);
+
+  form.reset();
+  
 });
