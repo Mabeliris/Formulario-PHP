@@ -8,9 +8,7 @@ async function postJSON(data) {
       body: JSON.stringify(data),
     });
     console.log("aqui response", response);
-    const result = await response.json();
-
-    console.log("Success:", result);
+        
   } catch (error) {
     console.error("Error:", error);
   }
@@ -20,30 +18,8 @@ const form = document.getElementById("votacionForm");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
+
   
-
-  async function postJSON(data) {
-    try {
-      const response = await fetch(
-        "http://localhost:8000/sistema_votacion.php",
-        {
-          method: "POST", // or 'PUT'
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-      console.log("aqui response", response);
-      const result = await response.json();
-      alert("Su respuesta ha sido envíada con exito");
-
-      console.log("Success:", result);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-
   //validar email y rut
   const name = document.getElementById("name").value;
   const alias = document.getElementById("alias").value;
@@ -77,5 +53,5 @@ form.addEventListener("submit", async function (e) {
   console.log("aqui la data", data);
 
   form.reset();
-  
+  alert ("Los datos fueron enviados con exito")
 });
