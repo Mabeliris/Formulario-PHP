@@ -6,7 +6,7 @@ header{
 form{
     background-color: white;
     padding: 10px;
-    height: 430px;
+    height: 600px;
     
 }
 
@@ -25,17 +25,19 @@ form{
         
     
     /* Altura deseada */
-    padding: px;
+    padding: 10px;
     /* Padding interno */
-    margin-bottom: 10px;
-    /* Espacio inferior */
+    margin-bottom: 20px;
+    
 }
 
 
 .selected {
     display: grid;
     grid-template-columns: repeat(8,1fr);
-    /* Columnas de tamaño flexible */   
+    /* Columnas de tamaño flexible */  
+    margin-bottom: 30px; 
+    margin-top: 30px;
 }
 
 .information {
