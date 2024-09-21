@@ -1,4 +1,4 @@
-# Formulario de votación
+# Formulario de votación 
 
 ## Índice
 
@@ -20,7 +20,7 @@
 ## 2. Resumen del proyecto
  Este proyecto consiste en la creación de un formulario de votación en línea que permite a los usuarios 
  registrar sus votos de manera sencilla y rápida. La aplicación web gestiona la 
- autenticación de los usuarios, captura los votos y los almacena en una base de datos
+ autenticación de los usuarios, captura los votos y los almacena en una base de datos.
 
  
 ## 3. Funcionalidades
@@ -28,6 +28,8 @@
 - Envío de votos de manera segura.
 - Almacenamiento de los votos en una base de datos.
 - Visualización de los resultados en tiempo real para los administradores.
+
+   ![](./form.png)
   
 
 
