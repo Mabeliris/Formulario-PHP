@@ -8,10 +8,12 @@ async function postJSON(data) {
       body: JSON.stringify(data),
     });
     console.log("aqui response", response);
-        
+    return response;    
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error:", error);    
+    throw error;
   }
+  
 }
 
 const form = document.getElementById("votacionForm");
@@ -49,9 +51,19 @@ form.addEventListener("submit", async function (e) {
     candidate: candidate,
     information: selectedInformation,
   };
-  postJSON(data);
+  
+  
   console.log("aqui la data", data);
 
-  form.reset();
-  alert ("Los datos fueron enviados con exito")
+  try{
+    const result = postJSON(data);
+    console.log(result);
+    form.reset();
+    alert("Los datos fueron enviados con exito");
+
+  }catch(error){
+    alert ("ocurrio un error")
+  }
+
+  
 });

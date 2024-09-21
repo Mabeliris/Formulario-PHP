@@ -40,11 +40,18 @@ if ($method == "POST") {
     echo "Información: " . $checkboxGroup . "<br>";
 
     // Crear la consulta SQL con datos sanitizados
+   // $query = "INSERT INTO votaciones (nombre_apellido, alias, rut, email, region, comuna, candidato, informacion) 
+    //          VALUES ('$name', '$alias', '$rut', '$email', '$region', '$comuna', '$candidate', '$checkboxGroup')";
     $query = "INSERT INTO votaciones (nombre_apellido, alias, rut, email, region, comuna, candidato, informacion) 
-              VALUES ('$name', '$alias', '$rut', '$email', '$region', '$comuna', '$candidate', '$checkboxGroup')";
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+    // Prepare a query for execution
+    $result = pg_prepare($dbconn, "my_query", $query);
 
+    // Execute the prepared query.  Note that it is not necessary to escape
+    // the string "Joe's Widgets" in any way
+    $result = pg_execute($dbconn, "my_query", array($name, $alias, $rut, $email, $region, $comuna, $candidate, $checkboxGroup));
     // Ejecutar la consulta y verificar el resultado
-    $result = pg_query($ClassConexion, $query);
+    //$result = pg_query($ClassConexion, $query);
     $response = array(); // array para la respuesta
 
     if ($result) {
