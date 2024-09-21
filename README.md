@@ -29,7 +29,7 @@
 - Almacenamiento de los votos en una base de datos.
 - Visualización de los resultados en tiempo real para los administradores.
   
-![](C:\Users\mabel\Downloads\Programación-20240526T014550Z-001\Programación\Proyecto PHP\form.png)
+![](./form.png)
 
 ## 4. Tecnologías utilizadas
 
