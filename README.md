@@ -29,7 +29,7 @@
 - Almacenamiento de los votos en una base de datos.
 - Visualización de los resultados en tiempo real para los administradores.
   
-![](./form.png)
+
 
 ## 4. Tecnologías utilizadas
 
